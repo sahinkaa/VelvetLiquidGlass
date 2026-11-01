@@ -1,0 +1,7 @@
+.theos/
+.build-cache/
+.toolchain/
+packages/
+validation/
+__pycache__/
+.DS_Store

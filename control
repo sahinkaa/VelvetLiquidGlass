@@ -1,0 +1,11 @@
+Package: com.sahinkaa.velvetliquidglass
+Name: Velvet - Liquid Glass
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Customize Liquid Glass notification backgrounds, glow and text colors.
+Maintainer: sahinkaa
+Author: NoisyFlake • sahinkaa
+Section: Tweaks
+Depends: firmware (>= 26.0), mobilesubstrate, preferenceloader
+Conflicts: com.initwithframe.velvet, com.noisyflake.velvet2, com.sahinkaa.velvet26plus
+Replaces: com.noisyflake.velvet2, com.sahinkaa.velvet26plus
