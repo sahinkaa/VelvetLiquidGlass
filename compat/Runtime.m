@@ -38,6 +38,7 @@ BOOL V26Method(Class cls, SEL selector, const char *result, unsigned arguments) 
     return YES;
 }
 
+#if defined(V26_HOST)
 static NSMutableDictionary *V26Diagnostics(void) {
     static NSMutableDictionary *report;
     static dispatch_once_t once;
@@ -102,6 +103,9 @@ void V26Event(NSString *event, NSDictionary *fields) {
     } @catch (NSException *exception) {}
 }
 
+#else
+#define V26UnusedDiagnostics(...) ((void)0)
+#endif
 id V26Object(id object, NSString *key) {
     if (!object || ![key isKindOfClass:NSString.class] || !key.length) return nil;
     Class cls = object_getClass(object);

@@ -199,7 +199,7 @@ def main():
         binaries[name] = macho(data[name], ident, scheme=scheme)
         for image in slices(data[name]).values():
             assert b'valueForKey:' not in image, 'unsafe KVC reader remains'
-            assert b'1.0.0' in image, 'build identifier missing'
+            assert b'VelvetLiquidGlass-%@.plist' not in image, 'release contains diagnostic report writer'
             assert b'VLG_LEGACY_PREFS_TEST_PATH' not in image
             assert b'VLG_PREFS_TEST_PATH' not in image, 'host test path branch in device binary'
     for image in slices(data[bundle+'VelvetLiquidGlass']).values():
@@ -210,19 +210,18 @@ def main():
     assert registration['entry']['detail'] == 'V26RootController'
     assert registration['entry']['label'] == 'Velvet - Liquid Glass'
     for image in slices(data[prefix+'Library/MobileSubstrate/DynamicLibraries/VelvetLiquidGlass.dylib']).values():
-        for marker in (b'_notificationShortLookViewIfLoaded', b'_updateWithProvidedStaticContent', b'_setNotificationRequest:', b'_setContinuousCornerRadius:', b'paletteReady', b'firstPaint', b'VelvetLiquidGlass-', b'presentationState', b'hooks.prominentCompletion', b'hooks.subordinateCompletion', b'iconCompletion', b'outline.nativeSelector', b'hooks.booleanRequestSetter', b'hooks.backgroundAlpha', b'settledPalette', b'V26ForegroundRaster', b'foregroundMode', b'rasterRenders'):
+        for marker in (b'_notificationShortLookViewIfLoaded', b'_updateWithProvidedStaticContent', b'_setNotificationRequest:', b'_setContinuousCornerRadius:', b'V26ForegroundRaster'):
             assert marker in image, 'retained runtime path missing'
-        for marker in (b'testBanner.serviceInstalled',b'setDismissAutomatically:',b'withdrawNotificationRequest:'): assert marker in image
+        for marker in (b'setDismissAutomatically:', b'withdrawNotificationRequest:'): assert marker in image
         assert b'_continuousRoundedCARectBezierPath:' not in image, 'unclamped outline helper remains'
-        for marker in (b'stopAutomaticallyUpdatingView:',b'automaticallyUpdateView:withStyle:',b'abi.seamless.textRegistration',b'com.sahinkaa.velvetliquidglass/bannerFonts'):
+        for marker in (b'stopAutomaticallyUpdatingView:',b'automaticallyUpdateView:withStyle:',b'com.sahinkaa.velvetliquidglass/bannerFonts'):
             assert marker in image, 'text-provider ownership/font capture path missing'
         assert b'VLG_FONT_TEST_PATH' not in image
         assert b'com.sahinkaa.velvetliquidglass.plist' in image
         assert b'com.noisyflake.velvet2.plist' in image, 'legacy preferences migration path missing'
-        assert b'testBanner.failure.' in image
         assert b'hooks.cellBorderLayout' not in image and b'hooks.classicMaterial' not in image, 'retired hook remains'
     for image in slices(data[bundle+'VelvetLiquidGlass']).values():
-        for marker in (b'VLGLivePreviewView', b'VLGNumericSliderCell', b'initWithRecipe:supportsGlass:', b'preview.backend'):
+        for marker in (b'VLGLivePreviewView', b'VLGNumericSliderCell', b'initWithRecipe:supportsGlass:'):
             assert marker in image, 'new native preview/numeric controls missing'
         for marker in (b'paneHistory',b'testStatus',b'configureIdentifier:'): assert marker in image
         assert b'pushViewController:animated:' not in image, 'preview-recreating internal navigation remains'
@@ -235,7 +234,7 @@ def main():
         assert b'Velvet - Liquid Glass Edition' not in image
         assert b'VLG_FONT_TEST_PATH' not in image
         assert b'VLG_TEMPLATE_TEST_PATH' not in image
-        for marker in (b'Test Banner',b'goBack',b'lsncPreview',b'com.sahinkaa.velvetliquidglass/test-banner'): assert marker in image
+        for marker in (b'Test Banner',b'goBack',b'com.sahinkaa.velvetliquidglass/test-banner'): assert marker in image
         assert b'Preview uses the latest banner background' not in image
         assert b'minimumButton' not in image and b'maximumButton' not in image
         assert b'VLGBlurVisibility' not in image
