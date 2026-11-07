@@ -23,6 +23,14 @@ Thank you, NoisyFlake, for creating Velvet and sharing your work with the jailbr
 - Separate **rootless** and **native RootHide** packages are provided.
 - The rootless package and other devices or iOS 26 versions have not been independently device-tested for this release. Older iOS versions are not supported by this edition.
 
+## Screenshots
+
+<p align="center">
+  <a href="notification-center.png"><img src="notification-center.png" width="240" alt="Notification Center with tinted Liquid Glass notification stacks"></a>
+  <a href="velvet-settings.png"><img src="velvet-settings.png" width="240" alt="Velvet settings with a live test banner and per-app controls"></a>
+  <a href="global-settings.png"><img src="global-settings.png" width="240" alt="Global settings for banner borders, glow, text and corner radius"></a>
+</p>
+
 ## What you can customize
 
 | Setting | What it does |
